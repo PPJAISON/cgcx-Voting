@@ -1,3 +1,4 @@
+import { UserSummary } from './../../_shared/models/user-summary.model';
 import { AltCoinService } from './../../_shared/services/alt-coin.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserSummaryComponent implements OnInit {
 
+  userSummaries: UserSummary[];
+
   constructor(private altCoinService: AltCoinService) { }
 
   ngOnInit() {
@@ -17,11 +20,10 @@ export class UserSummaryComponent implements OnInit {
   bindUserSummary() {
     this.altCoinService.getUserSummary().subscribe(res => {
       console.log(res);
-      // this.activeAltCoins = res.data;
+      this.userSummaries = res.data;
     }, error => {
       console.log(error);
-    }
-    );
+    });
   }
 
 }

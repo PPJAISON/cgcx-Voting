@@ -28,11 +28,15 @@ export class AltCoinService {
   }
 
   getVoteEnabledAltCoins(): Observable<any> {
-    return this.httpClient.get(this.apiUrl + 'bclvtng/admin/bl/getAltCoins');
+    return this.httpClient.get(this.apiUrl + 'bclvtng/vtng/bl/getAltCoins');
   }
 
   getAltCoins(): Observable<any> {
     return this.httpClient.get(this.apiUrl + 'bclvtng/admin/bl/getAltCoins');
+  }
+
+  getUserSummary(): Observable<any> {
+    return this.httpClient.get(this.apiUrl + 'bclvtng/admin/bl/getUserSummary');
   }
 
   createAltCoin(altCoin: AltCoin) {

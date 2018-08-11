@@ -1,3 +1,4 @@
+import { AltCoinService } from './../../_shared/services/alt-coin.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserSummaryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private altCoinService: AltCoinService) { }
 
   ngOnInit() {
+    this.bindUserSummary();
+  }
+
+  bindUserSummary() {
+    this.altCoinService.getUserSummary().subscribe(res => {
+      console.log(res);
+      // this.activeAltCoins = res.data;
+    }, error => {
+      console.log(error);
+    }
+    );
   }
 
 }

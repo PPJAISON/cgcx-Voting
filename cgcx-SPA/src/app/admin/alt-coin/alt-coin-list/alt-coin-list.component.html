@@ -1,0 +1,25 @@
+<h1>
+  Alt-Coins</h1>
+
+<a [routerLink]="['/admin/alt-coins/create']">Create Alt-Coin </a>
+
+<table class='table table-striped' *ngIf="altCoins">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let altCoin of altCoins">
+      <td>{{ altCoin.id }}</td>
+      <td>{{ altCoin.name }}</td>
+      <td>{{ altCoin.enabledForTrading }}</td>
+      <td>
+        <a [routerLink]="['/admin/alt-coins/edit/', altCoin.id]">Edit</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

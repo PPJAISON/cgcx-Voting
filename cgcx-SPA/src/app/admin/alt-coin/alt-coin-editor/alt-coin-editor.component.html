@@ -1,0 +1,32 @@
+<p class="lead">
+  {{titleText}}
+</p>
+
+<form [formGroup]="altCoinForm" (ngSubmit)="addOrUpdateAltCoin()">
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" class="form-control" placeholder="Enter Coin Name" formControlName="name">
+  </div>
+
+  <div class="form-group">
+    <label>Symbol</label>
+    <input type="text" class="form-control" placeholder="Enter Symbol" formControlName="symbol">
+  </div>
+
+  <div class="form-group">
+    <label>Last</label>
+    <input type="number" class="form-control" placeholder="Enter Last" formControlName="last">
+  </div>
+
+  <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="chkboxVoting" formControlName="enabledForVoting">
+    <label class="custom-control-label" for="chkboxVoting">Enable For Voting</label>
+  </div>
+
+  <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="chkboxTrading" formControlName="enabledForTrading">
+    <label class="custom-control-label" for="chkboxTrading">Enable For Trading</label>
+  </div>
+
+  <button type="submit" class="btn btn-primary">{{submitButtonText}}</button>
+</form>

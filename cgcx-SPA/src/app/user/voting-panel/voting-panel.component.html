@@ -1,0 +1,27 @@
+<form [formGroup]="tokenStringForm" (ngSubmit)="verifyTokenString()">
+  <div class="form-group">
+    <label></label>
+    <input type="text" class="form-control" placeholder="Enter Token String" formControlName="tokenString">
+  </div>
+  <button type="submit" class="btn btn-primary">Verify</button>
+</form>
+
+<hr/>
+<div *ngIf="isTokenVerified">
+<table class='table table-striped'  *ngIf="activeAltCoins">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let altCoin of activeAltCoins">
+      <td>{{ altCoin.name }}</td>
+      <td>
+        <input type="button" class="btn btn-default btn-sm" value="Vote" (click)="voteAltCoin( altCoin._id);" />
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>

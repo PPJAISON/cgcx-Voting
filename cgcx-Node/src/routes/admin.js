@@ -14,8 +14,23 @@ router.get('/bl/getAltCoins', function(req, res) {
   });
 });
 //------------------------------------
+router.post('/bl/getAltCoin', function(req, res) {
+  _findObject={}
+  if (!(req.body.altCoinSymbol === undefined||req.body.altCoinSymbol ==null)) {
+    _findObject['altCoinSymbol'] =req.body.altCoinSymbol;
+  }
+  const collection = req.db.get('adminAltcoins')
+  collection.find(_findObject)
+  .then((docs) => {
+    res.send({"data":docs})
+  })
+  .then(() => db.close())
+  .catch(function () {
+    console.log("Database connection issue @/bl/getAltCoin");
+  });
+});
+//------------------------------------
 router.post('/bl/postChanges', function(req, res) {
-  console.log(req.body.enableForVoting);
   _updateObject={}
   _findObject={}
   if (!(req.body.altCoinSymbol === undefined||req.body.altCoinSymbol ==null)) {

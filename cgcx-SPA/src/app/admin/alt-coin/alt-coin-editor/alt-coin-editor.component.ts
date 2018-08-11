@@ -39,21 +39,26 @@ export class AltCoinEditorComponent implements OnInit {
   private initForm() {
     this.altCoinForm = this.fb.group({
       name: ['', Validators.required],
-      symbol: ['', Validators.required],
-      last: [0, Validators.required],
+      altCoinSymbol: ['', Validators.required],
       enabledForVoting: new FormControl(false),
       enabledForTrading: new FormControl(false)
     });
 
     if (this.editMode) {
-      const altcoin = this.altCoinService.getAltCoinById(this.altCoinId);
-      this.altCoinForm.setValue({
-        name: altcoin.name,
-        symbol: altcoin.symbol,
-        last: altcoin.last,
-        enabledForVoting: altcoin.enableForVoting,
-        enabledForTrading: altcoin.enableForTrading
+      this.altCoinService.getAltCoinById(this.altCoinId).subscribe((res) => {
+
+        console.log(res.data[0]);
+        const altCoin = res.data[0] as AltCoin;
+        this.altCoinForm.setValue({
+          name: altCoin.name,
+          altCoinSymbol: altCoin.altCoinSymbol,
+          enabledForVoting: altCoin.enableForVoting,
+          enabledForTrading: altCoin.enableForTrading
+        });
+        this.altCoinForm.controls['name'].disable();
+        this.altCoinForm.controls['altCoinSymbol'].disable();
       });
+
     }
   }
 

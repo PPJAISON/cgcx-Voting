@@ -9,22 +9,14 @@ import { Observable } from 'rxjs';
 })
 export class AltCoinService {
 
-  altCoins: AltCoin[] ;
+  altCoins: AltCoin[];
   private apiUrl: string = environment.apiUrl;
 
   constructor(private httpClient: HttpClient) { }
 
-  // create(accountingCode: AccountingCode): Observable<any> {
-  //   return this.httpClient.post(this.apiUrl + 'AccountingCodes/Create', accountingCode);
-  // }
 
-  // list(): Observable<AccountingCode[]> {
-  //   return this.httpClient.get<AccountingCode[]>(this.apiUrl + 'AccountingCodes/List');
-  //   // return this.httpClient.get<AccountingCode[]>(this.apiUrl + 'BuyerOrgLocations/Test2');
-  // }
-
-  getAltCoinById(id: string): AltCoin {
-    return this.altCoins.find(a => a._id === id);
+  getAltCoinById(altCoinSymbol: string): any {
+    return this.httpClient.post(this.apiUrl + 'bclvtng/admin/bl/getAltCoin', { 'altCoinSymbol': altCoinSymbol });
   }
 
   getVoteEnabledAltCoins(): Observable<any> {
@@ -40,7 +32,6 @@ export class AltCoinService {
   }
 
   createAltCoin(altCoin: AltCoin) {
-    // return this.httpClient.get(this.apiUrl + 'bclvtng/admin/bl/getAltCoins');
     alert('Update to be Implemeted');
 
   }

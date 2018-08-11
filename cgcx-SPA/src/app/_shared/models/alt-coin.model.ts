@@ -1,8 +1,7 @@
 export interface AltCoin {
     _id: string;
     name: string;
-    symbol: string;
-    last: number;
+    altCoinSymbol: string;
     enableForVoting: boolean;
     enableForTrading: boolean;
     asOfNowVoteCount: number;

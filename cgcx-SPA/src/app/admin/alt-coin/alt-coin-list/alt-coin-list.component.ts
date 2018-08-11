@@ -13,9 +13,7 @@ import { AltCoinService } from './../../../_shared/services/alt-coin.service';
 export class AltCoinListComponent implements OnInit {
 
   public altCoins: AltCoin[];
-  modalRef: BsModalRef;
-  modalMessage: string;
-  constructor(private altCoinService: AltCoinService, private modalService: BsModalService) {
+  constructor(private altCoinService: AltCoinService) {
   }
 
   ngOnInit() {
@@ -32,17 +30,5 @@ export class AltCoinListComponent implements OnInit {
     );
   }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalMessage = 'Yo';
-    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
-  }
-
-  confirm(): void {
-    this.modalRef.hide();
-  }
-
-  decline(): void {
-    this.modalRef.hide();
-  }
 
 }

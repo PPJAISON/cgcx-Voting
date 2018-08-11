@@ -8,20 +8,31 @@
 
 <hr/>
 <div *ngIf="isTokenVerified">
-<table class='table table-striped'  *ngIf="activeAltCoins">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let altCoin of activeAltCoins">
-      <td>{{ altCoin.name }}</td>
-      <td>
-        <input type="button" class="btn btn-default btn-sm" value="Vote" (click)="voteAltCoin( altCoin._id);" />
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <table class='table table-striped' *ngIf="activeAltCoins">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let altCoin of activeAltCoins">
+        <td>{{ altCoin.name }}</td>
+        <td>
+          <input type="button" class="btn btn-default btn-sm" value="Vote" (click)="voteAltCoin(template, altCoin._id, altCoin.name);" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
+
+<!-- <button type="button" class="btn btn-primary" (click)="openModal(template)">Open modal</button> -->
+<br>
+<br>
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Are you sure you want to vote for {{selectedAltCoinName}}?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()">Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+  </div>
+</ng-template>

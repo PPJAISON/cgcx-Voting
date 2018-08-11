@@ -14,7 +14,7 @@ export class VotingPanelComponent implements OnInit {
   tokenStringForm: FormGroup;
   activeAltCoins: AltCoin[];
   constructor(private fb: FormBuilder, private altCoinService: AltCoinService) { }
-
+  isTokenVerified: boolean;
   ngOnInit() {
     this.initForm();
     this.altCoinService.getVoteEnabledAltCoins().subscribe(res => {
@@ -34,6 +34,11 @@ export class VotingPanelComponent implements OnInit {
 
   verifyTokenString() {
     console.log(this.tokenStringForm.value);
+    if (this.tokenStringForm.value.tokenString === '7') {
+      this.isTokenVerified = true;
+    } else {
+      this.isTokenVerified = false;
+    }
   }
 
   voteAltCoin(altCoinId: number) {

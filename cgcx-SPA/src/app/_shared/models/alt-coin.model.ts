@@ -1,5 +1,5 @@
 export interface AltCoin {
-    id: number;
+    _id: string;
     name: string;
     symbol: string;
     last: number;

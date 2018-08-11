@@ -8,18 +8,34 @@
     <tr>
       <th>Id</th>
       <th>Name</th>
-      <th>Status</th>
+      <th>Enabled For Voting</th>
+      <th>Enabled For Trading</th>
       <th>Action</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let altCoin of altCoins">
-      <td>{{ altCoin.id }}</td>
+      <td>{{ altCoin._id }}</td>
       <td>{{ altCoin.name }}</td>
-      <td>{{ altCoin.enabledForTrading }}</td>
+      <td>{{ altCoin.enableForVoting }}</td>
+      <td>{{ altCoin.enableForTrading }}</td>
       <td>
-        <a [routerLink]="['/admin/alt-coins/edit/', altCoin.id]">Edit</a>
+        <a [routerLink]="['/admin/alt-coins/edit/', altCoin._id]">Edit</a>
       </td>
     </tr>
   </tbody>
 </table>
+
+<!-- <button type="button" class="btn btn-primary" (click)="openModal(template)">Open modal</button> -->
+<br>
+<br>
+
+
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>{{modalMessage}}</p>
+    <button type="button" class="btn btn-default" (click)="confirm()">Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+  </div>
+</ng-template>

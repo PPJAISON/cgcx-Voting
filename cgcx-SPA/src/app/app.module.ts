@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDropdownModule, ModalModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './_shared/components/nav-bar/nav-bar.component';
@@ -42,6 +42,7 @@ import { AltCoinListComponent } from './admin/alt-coin/alt-coin-list/alt-coin-li
         FormsModule,
         ReactiveFormsModule,
         BsDropdownModule.forRoot(),
+        ModalModule.forRoot(),
         RouterModule.forRoot([
             { path: '', pathMatch: 'full', redirectTo: 'home-page' },
             { path: 'home-page', component: HomePageComponent },

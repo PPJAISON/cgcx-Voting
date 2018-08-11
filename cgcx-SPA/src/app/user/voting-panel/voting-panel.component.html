@@ -7,8 +7,8 @@
 </form>
 
 <hr/>
-
-<table class='table' *ngIf="activeAltCoins">
+<div *ngIf="isTokenVerified">
+<table class='table table-striped'  *ngIf="activeAltCoins">
   <thead>
     <tr>
       <th>Name</th>
@@ -19,8 +19,9 @@
     <tr *ngFor="let altCoin of activeAltCoins">
       <td>{{ altCoin.name }}</td>
       <td>
-        <input type="button" value="Vote" (click)="voteAltCoin(7);" />
+        <input type="button" class="btn btn-default btn-sm" value="Vote" (click)="voteAltCoin( altCoin._id);" />
       </td>
     </tr>
   </tbody>
 </table>
+</div>

@@ -16,7 +16,7 @@ export class AltCoinEditorComponent implements OnInit {
   editMode = false;
   titleText = 'Create Coin Entry';
   submitButtonText = 'Create';
-  altCoinId: number;
+  altCoinId: string;
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private altCoinService: AltCoinService
   ) { }
@@ -26,7 +26,7 @@ export class AltCoinEditorComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         if (params['id'] != null) {
-          this.altCoinId = +params['id'];
+          this.altCoinId = params['id'];
           this.editMode = true;
           this.titleText = 'Update Coin Entry';
           this.submitButtonText = 'Update';
@@ -61,7 +61,7 @@ export class AltCoinEditorComponent implements OnInit {
     console.log(this.altCoinForm.value);
     const altCoin = this.altCoinForm.value as AltCoin;
     if (this.editMode) {
-      altCoin.id = this.altCoinId;
+      altCoin._id = this.altCoinId;
       this.altCoinService.updateAltCoin(altCoin);
     } else {
       this.altCoinService.createAltCoin(altCoin);

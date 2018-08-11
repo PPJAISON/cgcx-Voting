@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 import { AltCoin } from './../../../_shared/models/alt-coin.model';
 import { AltCoinService } from './../../../_shared/services/alt-coin.service';
@@ -11,8 +13,9 @@ import { AltCoinService } from './../../../_shared/services/alt-coin.service';
 export class AltCoinListComponent implements OnInit {
 
   public altCoins: AltCoin[];
-
-  constructor(private altCoinService: AltCoinService) {
+  modalRef: BsModalRef;
+  modalMessage: string;
+  constructor(private altCoinService: AltCoinService, private modalService: BsModalService) {
   }
 
   ngOnInit() {
@@ -28,4 +31,18 @@ export class AltCoinListComponent implements OnInit {
     }
     );
   }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalMessage = 'Yo';
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
+
+  confirm(): void {
+    this.modalRef.hide();
+  }
+
+  decline(): void {
+    this.modalRef.hide();
+  }
+
 }

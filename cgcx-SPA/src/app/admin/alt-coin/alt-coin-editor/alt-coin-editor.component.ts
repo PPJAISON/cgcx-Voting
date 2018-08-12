@@ -14,7 +14,7 @@ export class AltCoinEditorComponent implements OnInit {
 
   altCoinForm: FormGroup;
   editMode = false;
-  titleText = 'Create Coin Entry';
+  titleText = 'New Coin';
   submitButtonText = 'Create';
   altCoinId: string;
 
@@ -28,7 +28,7 @@ export class AltCoinEditorComponent implements OnInit {
         if (params['id'] != null) {
           this.altCoinId = params['id'];
           this.editMode = true;
-          this.titleText = 'Update Coin Entry';
+          this.titleText = 'Update Coin';
           this.submitButtonText = 'Update';
         }
         this.initForm();

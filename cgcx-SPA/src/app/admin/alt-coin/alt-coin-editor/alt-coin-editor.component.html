@@ -1,8 +1,8 @@
 <p class="lead">
   {{titleText}}
 </p>
-
-<form [formGroup]="altCoinForm" (ngSubmit)="addOrUpdateAltCoin()">
+<div style="background-color:rgb(237, 243, 249); padding:30px; border-radius: 8px;">
+<form [formGroup]="altCoinForm" (ngSubmit)="addOrUpdateAltCoin()" >
   <div class="form-group">
     <label>Name</label>
     <input type="text" class="form-control" placeholder="Enter Coin Name" formControlName="name">
@@ -22,6 +22,8 @@
     <input type="checkbox" class="custom-control-input" id="chkboxTrading" formControlName="enabledForTrading">
     <label class="custom-control-label" for="chkboxTrading">Enable For Trading</label>
   </div>
-
-  <button type="submit" class="btn btn-primary">{{submitButtonText}}</button>
+<hr/>
+  <button type="submit" class="btn btn-primary btn-space">{{submitButtonText}}</button>
+  <button type="button" class="btn btn-default" [routerLink]="['/admin/alt-coins/']">Cancel</button>
 </form>
+</div>

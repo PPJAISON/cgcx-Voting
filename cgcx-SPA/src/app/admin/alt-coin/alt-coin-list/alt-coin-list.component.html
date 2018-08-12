@@ -1,12 +1,11 @@
 <h1>
   Alt-Coins</h1>
 
-<a [routerLink]="['/admin/alt-coins/create']">Create Alt-Coin </a>
+<a [routerLink]="['/admin/alt-coins/create']">New Coin</a>
 
-<table class='table table-striped' *ngIf="altCoins">
+<table class='table table-striped' *ngIf="altCoins" style="text-align: center;">
   <thead>
     <tr>
-      <th>Id</th>
       <th>Name</th>
       <th>Symbol</th>
       <th>Enabled For Voting</th>
@@ -16,19 +15,17 @@
   </thead>
   <tbody>
     <tr *ngFor="let altCoin of altCoins">
-      <td>{{ altCoin._id }}</td>
       <td>{{ altCoin.name }}</td>
-      <td>{{ altCoin.altCoinSymbol }}</td>
-      <td>{{ altCoin.enableForVoting }}</td>
-      <td>{{ altCoin.enableForTrading }}</td>
+      <td> <img style="width: 30px; height: 30px;" src="../../../../assets/coin-images/{{altCoin.altCoinSymbol}}.png" onerror="this.src='../../../../assets/coin-images/no-image.jpg'"/> - {{ altCoin.altCoinSymbol }}  </td>
+     
+      <td *ngIf="altCoin.enableForVoting" ><span class="fa fa-check"></span> </td>
+      <td *ngIf="!altCoin.enableForVoting"><span class="fa fa-times"></span> </td>
+
+      <td *ngIf="altCoin.enableForTrading"><span class="fa fa-check"></span> </td>
+      <td *ngIf="!altCoin.enableForTrading"><span class="fa fa-times"></span> </td>
       <td>
-        <a [routerLink]="['/admin/alt-coins/edit/', altCoin.altCoinSymbol]">Edit</a>
+        <a [routerLink]="['/admin/alt-coins/edit/', altCoin.altCoinSymbol]"><span class="fa fa-edit"></span></a>
       </td>
     </tr>
   </tbody>
 </table>
-
-<br>
-<br>
-
-

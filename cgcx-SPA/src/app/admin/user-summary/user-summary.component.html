@@ -13,7 +13,8 @@
   <tbody>
     <tr *ngFor="let user of userSummaries">
       <td>{{ user.userFullName }}</td>
-      <td>{{ user.altCoinSymbol }}</td>
+      <td> <img style="width: 30px; height: 30px;" src="../../../assets/coin-images/{{user.altCoinSymbol}}.png" 
+        onerror="this.src='../../../assets/coin-images/no-image.jpg'"/> - {{ user.altCoinSymbol }}  </td>
       <td>{{ user.totalCoinsWithCGCX }}</td>
       <td>{{ user.usedForVoting }}</td>
     </tr>

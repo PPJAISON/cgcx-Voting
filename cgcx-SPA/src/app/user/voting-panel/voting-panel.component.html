@@ -1,7 +1,7 @@
 <h2>Voting Panel</h2>
 
 <div style="background-color:rgb(237, 243, 249); padding:30px; border-radius: 8px;">
-  <form [formGroup]="tokenStringForm" (ngSubmit)="verifyTokenString()">
+  <form [formGroup]="tokenStringForm" (ngSubmit)="verifyTokenString(invalidTokenModal)">
     <div class="form-group">
       <label for="txtTokenString">Token String</label>
       <input type="text" class="form-control" id="txtTokenString" placeholder="Enter Token String" formControlName="tokenString">
@@ -20,7 +20,8 @@
   <table class='table table-striped' *ngIf="activeAltCoins" style="text-align: center;">
     <thead>
       <tr>
-        <th>Name</th>
+        <th>Coin Name</th>
+        <th>Symbol</th>
         <th>Current Vote Count</th>
         <th>Actions</th>
       </tr>
@@ -28,9 +29,11 @@
     <tbody>
       <tr *ngFor="let altCoin of activeAltCoins">
         <td>{{ altCoin.name }}</td>
+        <td> <img style="width: 30px; height: 30px;" src="../../../assets/coin-images/{{altCoin.altCoinSymbol}}.png" 
+          onerror="this.src='../../../assets/coin-images/no-image.jpg'"/> - {{ altCoin.altCoinSymbol }}  </td>
         <td>7</td>
         <td>
-          <input type="button" class="btn btn-default btn-sm" value="Vote" (click)="voteAltCoin(template, altCoin._id, altCoin.name);"
+          <input type="button" class="btn btn-default btn-sm" value="Vote" (click)="voteAltCoin(voteConfirmation, altCoin._id, altCoin.name);"
           />
         </td>
       </tr>
@@ -38,13 +41,19 @@
   </table>
 </div>
 
-<!-- <button type="button" class="btn btn-primary" (click)="openModal(template)">Open modal</button> -->
 <br>
 <br>
-<ng-template #template>
+<ng-template #voteConfirmation>
   <div class="modal-body text-center">
     <p>Are you sure you want to vote for {{selectedAltCoinName}}?</p>
     <button type="button" class="btn btn-primary btn-space" (click)="confirm()">Yes</button>
     <button type="button" class="btn btn-default" (click)="decline()">No</button>
+  </div>
+</ng-template>
+
+<ng-template #invalidTokenModal>
+  <div class="modal-body text-center">
+    <p>Enter Invalid Token String.</p>
+    <button type="button" class="btn btn-primary" (click)="decline()">Ok</button>
   </div>
 </ng-template>

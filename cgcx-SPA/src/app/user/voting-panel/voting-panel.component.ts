@@ -33,7 +33,7 @@ export class VotingPanelComponent implements OnInit {
     });
   }
 
-  verifyTokenString() {
+  verifyTokenString(invalidTokenModal) {
     console.log(this.tokenStringForm.value);
     if (this.tokenStringForm.value.tokenString === '7') {
       this.isTokenVerified = true;
@@ -42,9 +42,11 @@ export class VotingPanelComponent implements OnInit {
         this.activeAltCoins = res.data;
       }, error => {
         console.log(error);
+
       }
       );
     } else {
+      this.modalRef = this.modalService.show(invalidTokenModal, { class: 'modal-sm' });
       this.isTokenVerified = false;
     }
   }

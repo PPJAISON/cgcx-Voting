@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 //------------------------------------
 router.post('/bl/checkAltCoin', function(req, res) {
   _findObject={}
@@ -10,11 +9,38 @@ router.post('/bl/checkAltCoin', function(req, res) {
   if (!(req.body.userID === undefined||req.body.userID ==null)) {
     _findObject['userID'] =req.body.userID;
   }
-  if (_findObject.hasOwnProperty("altCoinKey")&&_findObject.hasOwnProperty("userID")){
-    res.send({"data":'checkingAltCoin_Ok'})
+  if (_findObject.hasOwnProperty("altCoinKey")||_findObject.hasOwnProperty("userID")) {
+    const collection = req.db.get('tokenSummary')
+    var recordCount=0;
+    console.log(_findObject);
+    collection.find(
+      _findObject
+    )
+    .then((docs) => {
+      recordCount=docs.length;
+    })
+    .then((docs) =>{
+      console.log("recordCount",recordCount)
+      if(recordCount>0){
+        const collection2 = req.db.get('adminAltcoins')
+        collection2.find({enableForVoting:1},{name:1,symbol:1})
+        .then((docs2) => {
+          res.send({"data":docs2})
+        })
+        .catch(function () {
+          console.log("Database connection issue @bclvtng/vtng/bl/checkAltCoin");
+        });
+      }else{
+        res.send({"data":"altCoinKey/userID missing"})
+      }
+    })
+    .then(() => db.close())
+    .catch(function () {
+      console.log("Database connection issue @/bl/checkAltCoin");
+    });
   }else
   {
-    res.send({"data":'checkingAltCoin_NotWorking'})
+    res.send({"data":"altCoinKey/userID missing"})
   }
 });
 //------------------------------------

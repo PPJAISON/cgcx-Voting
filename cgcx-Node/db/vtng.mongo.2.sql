@@ -85,3 +85,17 @@ db.vtngCastVote.insert(
 ])
 
 db.vtngCastVote.find();
+-------------------------------------------
+db.createCollection("tokenSummary")
+db.tokenSummary.insert(
+[
+  {
+    altCoinKey:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ",
+    userID: "I004",
+    timeOfAvailable:ISODate("2018-08-07T06:01:17.171Z")
+  }
+])
+
+
+db.tokenSummary.find({altCoinKey:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ",userID: "I004"})
+db.tokenSummary.find();

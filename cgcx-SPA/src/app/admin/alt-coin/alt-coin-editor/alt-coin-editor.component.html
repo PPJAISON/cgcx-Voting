@@ -1,10 +1,9 @@
-<p class="lead">
-  {{titleText}}
-</p>
+<h2>{{titleText}}</h2>
+
 <div style="background-color:rgb(237, 243, 249); padding:30px; border-radius: 8px;">
 <form [formGroup]="altCoinForm" (ngSubmit)="addOrUpdateAltCoin()" >
   <div class="form-group">
-    <label>Name</label>
+    <label>Coin Name</label>
     <input type="text" class="form-control" placeholder="Enter Coin Name" formControlName="name">
   </div>
 

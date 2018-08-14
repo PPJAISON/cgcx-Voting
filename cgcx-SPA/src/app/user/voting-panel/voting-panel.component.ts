@@ -35,20 +35,31 @@ export class VotingPanelComponent implements OnInit {
 
   verifyTokenString(invalidTokenModal) {
     console.log(this.tokenStringForm.value);
-    if (this.tokenStringForm.value.tokenString === '7') {
-      this.isTokenVerified = true;
-      this.altCoinService.getVoteEnabledAltCoins().subscribe(res => {
-        console.log(res);
+    this.altCoinService.verifyAltCoin(this.tokenStringForm.value.tokenString).subscribe(res => {
+      console.log(res);
+      if (res.data instanceof Array) {
         this.activeAltCoins = res.data;
-      }, error => {
-        console.log(error);
-
+        this.isTokenVerified = true;
+      } else {
+        this.modalRef = this.modalService.show(invalidTokenModal, { class: 'modal-sm' });
+        this.isTokenVerified = false;
       }
-      );
-    } else {
-      this.modalRef = this.modalService.show(invalidTokenModal, { class: 'modal-sm' });
-      this.isTokenVerified = false;
-    }
+    });
+    // if (this.tokenStringForm.value.tokenString === '7') {
+    // this.isTokenVerified = true;
+    // this.altCoinService.getVoteEnabledAltCoins().subscribe(res => {
+    //   console.log(res);
+    //   this.activeAltCoins = res.data;
+    // }, error => {
+    //   console.log(error);
+
+    // }
+    // );
+    // }
+    // else {
+    //   this.modalRef = this.modalService.show(invalidTokenModal, { class: 'modal-sm' });
+    //   this.isTokenVerified = false;
+    // }
   }
 
   voteAltCoin(template: TemplateRef<any>, altCoinId: number, altCoinName: string) {

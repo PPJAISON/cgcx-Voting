@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class AltCoinService {
 
+
   altCoins: AltCoin[];
   private apiUrl: string = environment.apiUrl;
 
@@ -29,6 +30,10 @@ export class AltCoinService {
 
   getUserSummary(): Observable<any> {
     return this.httpClient.get(this.apiUrl + 'bclvtng/admin/bl/getUserSummary');
+  }
+
+  verifyAltCoin(coinToken: string): Observable<any> {
+    return this.httpClient.post(this.apiUrl + 'bclvtng/vtng/bl/checkAltCoin', { 'altCoinKey': coinToken, 'userID': 'I004' });
   }
 
   createAltCoin(altCoin: AltCoin) {
